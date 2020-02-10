@@ -66,6 +66,18 @@ devtools::install_github("datacamp/RDocumentation")
 https://github.com/datacamp/Rdocumentation
 
 
+## How to run uPolar : 
+
+library(dplyr)
+
+library(plotly)
+
+library(plyr)
+
+df <- read.csv( "../data/BC8_Tp35.csv)
+
+uPolar(df,1,2,3,4,0,0,391)
+
 
 
 
