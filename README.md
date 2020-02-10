@@ -46,7 +46,7 @@ download zip file and run below command in console :
 
 install.packages("~/Downloads/uPolar_0.1.0.tar", repos = NULL,type = "source")
 
-note : type needs to be specified to : "source"  
+note : In install.packages("  file path " , repos = NULL , type =       ) , the "type" needs to be specified to "source"  
 
 
 ## Packages : 
