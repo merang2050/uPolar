@@ -2,6 +2,14 @@
 #'
 #' @description AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
 #'
+#'@details  Packages :     devtools::install.packages(c("dplyr,plotly,plyr"))
+#'
+#' ibrary(plotly)
+#'
+#' library(dplyr)
+#'
+#' library(plyr)
+#'
 #' @param df  Dataset, features order ( Time for each image , Total cell number, cell area (optional), cell distance )
 #'
 #' @param time_col  Time number for each image
@@ -28,11 +36,11 @@
 #' library(plyr)
 #'
 #' uPolar(df,1,2,3,4,0,7,391)
-#'
-#' @note Packages installation : dplyr , plyr , plotly
+
 uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images){
 
-  print(' Step1 : Loading data ')
+  ##### Data format (time_col,objs_col,area_col,dist_col)######
+  ##### Data format ( 1,        2,        3,        4   )######
 
   t2d <- function (df, time_col,num_images){
 
@@ -64,7 +72,7 @@ uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_ima
         df$theta[i] = dg
     }
 
-    print(' Step2 : Time converted to degree (theta) ')
+    print(' Step1 : Time converted to degree (theta) ')
     return(df)
 
   }
@@ -114,7 +122,7 @@ uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_ima
     }
     #df.row  <- df.row [,-c(1)]     # remove first colunm
     df.obj= as.vector(t(df.obj))   # conver object data.frame to vector
-    print(' Step3 : Data Converted to Plotly format ')
+    print(' Step2 : Data Converted to Plotly format ')
 
     return (list(v1=df.row,v2=df.obj,v3=df.area, v4=max.r,v5=min.r))
 
@@ -133,6 +141,7 @@ uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_ima
 
     if ( missing(df)){
       print('missing "data" entery')
+      break
     }
     else if (missing(off_set)){
       off_set = 5;
@@ -146,7 +155,7 @@ uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_ima
       print(' Correct Entery')
     }
 
-    print(' Step4: Preparing for Plot ')
+    print(' Step3: Preparing for Plot ')
 
 
     #####################  Generat Polar Plot #####################
@@ -255,7 +264,7 @@ uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_ima
     #       opacity = 10)
     #     )
     #
-    print(' Step5: Preparing for layout ')
+    print(' Step4: Preparing for layout ')
 
     # Plot layout features
 
@@ -313,15 +322,16 @@ uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_ima
 #############################################################################################
 
 
-################ Load data ##################
-
+###################################### Load data #############################################
+#df = read.csv("BC8_Tp1.csv")
 #df = read.csv("../data/BC8_Tp1.csv")
 #df= select(df,"time_num","total_objs","Est_area","dist")  #arrange feature in order
 
-#######  uPolar Function  Arguments ##########
+##############################  uPolar Function  Arguments ###################################
+
 
 ##### Data format (df, time_col,objs_col,area_col,dist_col,offset, c.Adjust ,num_images)######
-##### Data format (0 ,   1,        2,        3,      4,    offset, c.Adjust ,num_images)######
+##### Data format (0 ,   1,        2,        3,      4,      5,        6,        7     )######
 
 
 # 0 : df, dataset

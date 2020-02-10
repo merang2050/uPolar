@@ -30,8 +30,14 @@ Microfludics Time Series ploar plot (RLS optional)
 \description{
 AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
 }
-\note{
-Packages installation : dplyr , plyr , plotly
+\details{
+Packages :     devtools::install.packages(c("dplyr,plotly,plyr"))
+
+ibrary(plotly)
+
+library(dplyr)
+
+library(plyr)
 }
 \examples{
 library(dplyr)
@@ -39,5 +45,4 @@ library(plotly)
 library(plyr)
 
 uPolar(df,1,2,3,4,0,7,391)
-
 }
