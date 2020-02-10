@@ -2,29 +2,34 @@
 #'
 #' @description AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
 #'
-#' @param dataset
+#' @param df  Dataset, features order ( Time for each image , Total cell number, cell area (optional), cell distance )
 #'
-#' @param time number for each image
+#' @param time_col  Time number for each image
 #'
-#' @param total cells number at each image
+#' @param obj_col  Total cells number at each image
 #'
-#' @param individual cell area (set it to zero (0) if area is unavailable)
+#' @param area_col  Individual cell area (set it to zero (0) if area is unavailable)
 #'
-#' @param cell distance from reference point to calculate radius
+#' @param dist_col  Cell distance from reference point to calculate radius
 #'
-#' @param offset between maximum cell raduis and plolar plot outlayer line (better visualization)
+#' @param offset  Raduis between maximum cell raduis and plolar plot outlayer line (better visualization)
 #'
-#' @param cell area adjustment for over size cells ( better visualization)
+#' @param c.Adjust  Cell area adjustment for over size cells ( better visualization)
 #'
-#' @param total number of images
+#' @param num_images Total number of images
 #'
-#' @return Microfludics Time Series ploar plot (RLS optional)
+#' @return  Microfludics Time Series ploar plot (RLS optional)
 #'
-#' @format time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)
+#' @format uPolar(time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)
 #'
 #' @examples
+#' library(dplyr)
+#' library(plotly)
+#' library(plyr)
+#'
 #' uPolar(df,1,2,3,4,0,7,391)
-#' @note   install packages : dplyr , plyr , plotly
+#'
+#' @note Packages installation : dplyr , plyr , plotly
 uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images){
 
   print(' Step1 : Loading data ')

@@ -3,22 +3,26 @@
 \name{uPolar}
 \alias{uPolar}
 \title{uPolar Visualization tool for time series of microfluidic microscopic images}
-\format{time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)}
+\format{uPolar(time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)}
 \usage{
 uPolar(df, time_col, obj_col, area_col, dist_col, offset, c.Adjust, num_images)
 }
 \arguments{
-\item{offset}{between maximum cell raduis and plolar plot outlayer line (better visualization)}
+\item{df}{Dataset, features order ( Time for each image , Total cell number, cell area (optional), cell distance )}
 
-\item{dataset}{}
+\item{time_col}{Time number for each image}
 
-\item{time}{number for each image}
+\item{obj_col}{Total cells number at each image}
 
-\item{individual}{cell area (set it to zero (0) if area is unavailable)}
+\item{area_col}{Individual cell area (set it to zero (0) if area is unavailable)}
 
-\item{cell}{area adjustment for over size cells ( better visualization)}
+\item{dist_col}{Cell distance from reference point to calculate radius}
 
-\item{total}{number of images}
+\item{offset}{Raduis between maximum cell raduis and plolar plot outlayer line (better visualization)}
+
+\item{c.Adjust}{Cell area adjustment for over size cells ( better visualization)}
+
+\item{num_images}{Total number of images}
 }
 \value{
 Microfludics Time Series ploar plot (RLS optional)
@@ -27,8 +31,13 @@ Microfludics Time Series ploar plot (RLS optional)
 AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
 }
 \note{
-install packages : dplyr , plyr , plotly
+Packages installation : dplyr , plyr , plotly
 }
 \examples{
+library(dplyr)
+library(plotly)
+library(plyr)
+
 uPolar(df,1,2,3,4,0,7,391)
+
 }
