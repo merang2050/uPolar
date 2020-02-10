@@ -1,6 +1,6 @@
 Package: uPolar
 Type: Package
-Title: mμPlot Visualization tool for time lapse Microscopic Images
+Title: μPlot Visualization tool for time lapse Microscopic Images
 Version: 0.1.0
 Author: Mehran Ghafari
 Maintainer: Mehran Ghafari <ryg668@mocs.utc.edu>
