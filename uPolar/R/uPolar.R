@@ -25,6 +25,9 @@
 #' @examples uPolar(df,1,2,3,4,0,7,391)
 #'
 #' @note   insrtall packages : dplyr , plotly ,RDocumentation
+library(dplyr)
+library(plotly)
+library(RDocumentation)
 uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images){
 
   print(" Load Data  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ")
