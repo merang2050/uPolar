@@ -1,7 +1,8 @@
-
-#' @title mμPlot - Visualization tool for time series of microfluidic microscopic images
+#' @title  μPolar Visualization tool for time series of microfluidic microscopic images
 #'
 #' @description AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
+#'
+#' @param dataset
 #'
 #' @param time number for each image
 #'
@@ -21,27 +22,27 @@
 #'
 #' @format  time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)
 #'
-#' @examples   uPolar(1,2,3,4,0,7,391)
+#' @examples   uPolar(df,1,2,3,4,0,7,391)
 #'
 #' @note   insrtall packages : dplyr , plotly ,RDocumentation
 
 library(dplyr)
 library(plotly)
 library(RDocumentation)
-uPolar <- function(time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images){
+uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images){
 
   print(" Load Data  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ")
-  df.name <-  file.choose(new=FALSE)
-
-  #df = read.csv(" filename + path ")                       # data name by given name and path
-  df = read.csv(df.name)                                    # file by directory
-  df= select(df,"time_num","total_objs","Est_area","dist")  #arrange feature in order
+  # df.name <-  file.choose(new=FALSE)
+  #
+  # #df = read.csv(" filename + path ")                       # data name by given name and path
+  # df = read.csv(df.name)                                    # file by directory
+  # df= select(df,"time_num","total_objs","Est_area","dist")  #arrange feature in order
 
 
     ############ Convet Time to Degree (theta ) #############
     t2d <- function (df, time_col,num_images){
 
-      df$theta = 'NA'
+      df$theta = NA
       dg =0   # initilize degree
 
       for  (i in 1 : nrow(df)){
@@ -317,16 +318,33 @@ uPolar <- function(time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images
       p
 
 }
-############################### How to run the function from here ########################
-##########################################################################################
-#  muPolar Argument :
+#############################################################################################
+############################### How to run the function from here ###########################
+#############################################################################################
 
+
+###################################### Load data #############################################
+
+#df = read.csv("../data/BC8_Tp1.csv")
+#df= select(df,"time_num","total_objs","Est_area","dist")  #arrange feature in order
+
+##############################  uPolar Function  Arguments ###################################
+
+
+##### Data format (df, time_col,objs_col,area_col,dist_col,offset, c.Adjust ,num_images)######
+##### Data format (0 ,   1,        2,        3,      4,      5,        6,        7     )######
+
+
+# 0 : df, dataset
 # 1 : time col , time colunm number in dataset
-# 2 : obj_col, total total cell colunm number in dataset
+# 2 : obj_col, total total cell colunm number in datasetzx
 # 3 : area_col, area colunm number in dataset, if the area is unavailabl, set to zero (0 )
 # 4 : dist_col  distance colunm number in dataset
 # 5 : offset to ajdust max value of data from out-layer for better data visulization
 # 6 : c.Ajust to adjust cell size if the  data area is available, otherwise set to zero (0)
 # 7 : num_images, Number of images to visulize
 
-#uPloter(1,2,3,4,0,7,391)
+
+#uPolar(df, 1,2,3,4,0,7,391)
+
+
