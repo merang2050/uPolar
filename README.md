@@ -1,4 +1,4 @@
-# muPolar
+# uPolar
 
 
 
@@ -7,27 +7,27 @@
 ![ScreenShot](https://github.com/merang/muPlot/blob/master/microfluidics.png)
 
 
-##  muPlot Visulization for Trap 35  :  
+##  uPolar Visulization for Trap 35  :  
 
 ![ScreenShot](https://github.com/merang/muPlot/blob/master/BC8_Tp35.png)
 
 
-##  muPlot Visulization for Trap 1  :  
+##  uPolar Visulization for Trap 1  :  
 
 
 ![ScreenShot](https://github.com/merang/muPlot/blob/master/BC8_Tp1.png)
 
-##  muPlot Visulization for Trap 20  :  
+##  uPolar Visulization for Trap 20  :  
 
 
 ![ScreenShot](https://github.com/merang/muPlot/blob/master/BC8_Tp20.png)
 
 
-##  muPlot Visulization for Trap 20  (Applying cell size)  :  
+##  uPolar Visulization for Trap 20  (Applying cell size)  :  
 
 ![ScreenShot](https://github.com/merang/muPlot/blob/master/BC8_Tp20_area.png)
 
-##  muPlot Visulization for Trap 60  :  
+##  uPolar Visulization for Trap 60  :  
 
 ![ScreenShot](https://github.com/merang/muPlot/blob/master/BC8_Tp60.png)
 
@@ -38,7 +38,7 @@
 
 install.packages("devtools")
 
-devtools::install_github("merang/muPolar")
+devtools::install_github("merang/uPolar")
 
 
 ## Packages : 
