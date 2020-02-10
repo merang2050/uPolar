@@ -36,9 +36,17 @@
 
 ## Installation : 
 
+### Option 1:  
 install.packages("devtools")
 
 devtools::install_github("merang/uPolar/uPolar")
+
+### Option 2:
+download zip file and run below command in console : 
+
+install.packages("~/Downloads/uPolar_0.1.0.tar", repos = NULL,type = "source")
+
+note : type needs to be specified to : "source"  
 
 
 ## Packages : 
