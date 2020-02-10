@@ -8,7 +8,7 @@
 #'
 #' @param total cells number at each image
 #'
-#' @param Individual cell area (set it to zero (0) if area is unavailable)
+#' @param individual cell area (set it to zero (0) if area is unavailable)
 #'
 #' @param cell distance from reference point to calculate radius
 #'
@@ -16,16 +16,15 @@
 #'
 #' @param cell area adjustment for over size cells ( better visualization)
 #'
-#' @param Total number of images
+#' @param total number of images
 #'
-#' @return  Microfludics Time Series ploar plot (RLS optional)
+#' @return Microfludics Time Series ploar plot (RLS optional)
 #'
-#' @format  time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)
+#' @format time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)
 #'
-#' @examples   uPolar(df,1,2,3,4,0,7,391)
+#' @examples uPolar(df,1,2,3,4,0,7,391)
 #'
 #' @note   insrtall packages : dplyr , plotly ,RDocumentation
-
 library(dplyr)
 library(plotly)
 library(RDocumentation)
