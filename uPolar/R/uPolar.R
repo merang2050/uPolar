@@ -24,7 +24,10 @@
 #'
 #' @examples uPolar(df,1,2,3,4,0,7,391)
 #'
-#' @note   install packages : dplyr , plyr, plotly
+#' @note   install packages : dplyr , plyr , plotly
+library(dplyr)
+library(plotly)
+library(plyr)
 uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images){
 
   print(' Step1 : Loading data ')
