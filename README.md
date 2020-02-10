@@ -38,7 +38,7 @@
 
 install.packages("devtools")
 
-devtools::install_github("merang/uPolar")
+devtools::install_github("merang/uPolar/uPolar")
 
 
 ## Packages : 
