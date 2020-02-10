@@ -1,4 +1,4 @@
-#' @title μPolar Visualization tool for time series of microfluidic microscopic images
+#' @title uPolar Visualization tool for time series of microfluidic microscopic images
 #'
 #' @description AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
 #'
@@ -22,12 +22,9 @@
 #'
 #' @format time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)
 #'
-#' @examples uPolar(df,1,2,3,4,0,7,391)
-#'
+#' @examples
+#' uPolar(df,1,2,3,4,0,7,391)
 #' @note   install packages : dplyr , plyr , plotly
-library(dplyr)
-library(plotly)
-library(plyr)
 uPolar <- function(df,time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images){
 
   print(' Step1 : Loading data ')

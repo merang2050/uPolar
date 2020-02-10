@@ -2,10 +2,33 @@
 % Please edit documentation in R/uPolar.R
 \name{uPolar}
 \alias{uPolar}
-\title{μPolar Visualization tool for time series of microfluidic microscopic images}
+\title{uPolar Visualization tool for time series of microfluidic microscopic images}
+\format{time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)}
 \usage{
 uPolar(df, time_col, obj_col, area_col, dist_col, offset, c.Adjust, num_images)
 }
+\arguments{
+\item{offset}{between maximum cell raduis and plolar plot outlayer line (better visualization)}
+
+\item{dataset}{}
+
+\item{time}{number for each image}
+
+\item{individual}{cell area (set it to zero (0) if area is unavailable)}
+
+\item{cell}{area adjustment for over size cells ( better visualization)}
+
+\item{total}{number of images}
+}
+\value{
+Microfludics Time Series ploar plot (RLS optional)
+}
 \description{
-μPolar Visualization tool for time series of microfluidic microscopic images
+AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
+}
+\note{
+install packages : dplyr , plyr , plotly
+}
+\examples{
+uPolar(df,1,2,3,4,0,7,391)
 }
