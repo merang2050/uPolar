@@ -1,4 +1,4 @@
-#' μPolar Visualization tool for time series of microfluidic microscopic images
+#' @title μPolar Visualization tool for time series of microfluidic microscopic images
 #'
 #' @description AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
 #'
