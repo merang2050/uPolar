@@ -15,7 +15,7 @@
 ##  uPolar Visulization for Trap 1  :  
 
 
-![ScreenShot](https://github.com/merang/uPolar/uPolar//blob/master/BC8_Tp1.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp1.png)
 
 ##  uPolar Visulization for Trap 20  :  
 
