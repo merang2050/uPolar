@@ -3,9 +3,19 @@
 \name{uPolar}
 \alias{uPolar}
 \title{uPolar Visualization tool for time series of microfluidic microscopic images}
-\format{uPolar(time_col,obj_col,area_col,dist_col,offset,c.Adjust,num_images)}
+\format{uPolar(time_col,obj_col,dist_col,num_number,area_col,offset,c.Adjust,RLS)}
 \usage{
-uPolar(df, time_col, obj_col, area_col, dist_col, offset, c.Adjust, num_images)
+uPolar(
+  df,
+  time_col,
+  obj_col,
+  dist_col,
+  num_images,
+  area_col,
+  offset,
+  c.Adjust,
+  RLS
+)
 }
 \arguments{
 \item{df}{Dataset, features order ( Time for each image , Total cell number, cell area (optional), cell distance )}
@@ -14,15 +24,17 @@ uPolar(df, time_col, obj_col, area_col, dist_col, offset, c.Adjust, num_images)
 
 \item{obj_col}{Total cells number at each image}
 
-\item{area_col}{Individual cell area (set it to zero (0) if area is unavailable)}
-
 \item{dist_col}{Cell distance from reference point to calculate radius}
 
-\item{offset}{Raduis between maximum cell raduis and plolar plot outlayer line (better visualization)}
-
-\item{c.Adjust}{Cell area adjustment for over size cells ( better visualization)}
-
 \item{num_images}{Total number of images}
+
+\item{area_col}{Individual cell area, if area is unavailable set to NA}
+
+\item{offset}{Raduis between maximum cell raduis and plolar plot outlayer line (better visualization),  use  'NA'  for default}
+
+\item{c.Adjust}{Cell area adjustment for over size cells (better visualization), use  'NA' if area dataset is not available}
+
+\item{RLS}{RLS dataset for each time-point (division happened = 1, no division = 0), use  'NA'  if RLS data is not availablle}
 }
 \value{
 Microfludics Time Series ploar plot (RLS optional)
@@ -38,11 +50,4 @@ ibrary(plotly)
 library(dplyr)
 
 library(plyr)
-}
-\examples{
-library(dplyr)
-library(plotly)
-library(plyr)
-
-uPolar(df,1,2,3,4,0,7,391)
 }
