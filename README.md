@@ -74,13 +74,11 @@ library(plotly)
 
 library(plyr)
 
-df <- read.csv( "../data/BC8_Tp35.csv") # one of dataset
 
-uPolar(df,1,2,3,4,0,0,391)
-
-
-
-
-
+df <- read.csv("../data/BC8_Tp10.csv")
+ 
+df= select(df,"time_num","total_objs","dist")
+ 
+uPolar(df, 1,2,3,391,NA,NA,NA,NA)
 
 
