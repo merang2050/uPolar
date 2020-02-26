@@ -18,8 +18,6 @@
 #'
 #' @param dist_col  Cell distance from reference point to calculate radius
 #'
-#' @param num_images Total number of images
-#'
 #' @param area_col  Individual cell area, if area is unavailable set to NA
 #'
 #' @param offset  Raduis between maximum cell raduis and plolar plot outlayer line (better visualization),  use  'NA'  for default
@@ -30,7 +28,7 @@
 #'
 #' @return  Microfludics Time Series ploar plot (RLS optional)
 #'
-#' @format uPolar(time_col,obj_col,dist_col,num_number,area_col,offset,c.Adjust,RLS)
+#' @format uPolar(time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS)
 #'
 #' @examples
 #' library(dplyr)
@@ -41,11 +39,10 @@
 #' df= select(df,"time_num","total_objs","dist",area")
 #' df.tp1 = read.csv("../data/BC8_RLS_tp10.csv")
 #' RLS =df.tp1$com
-#' uPolar(df, 1,2,3,391,NA,NA,NA,NA)
+#' uPolar(df, 1,2,3,NA,NA,NA,NA)
 #'
 #'
-#'
-uPolar <- function(df,time_col,obj_col,dist_col,num_images,area_col,offset,c.Adjust,RLS){
+uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
 
   ########################### checking enteries ########################################
   if ( missing(df)){
@@ -91,7 +88,9 @@ uPolar <- function(df,time_col,obj_col,dist_col,num_images,area_col,offset,c.Adj
     }
 
 
-  t2d <- function (df, time_col,num_images){
+  t2d <- function (df, time_col){
+
+    num_images <- length(unique(df[,time_col] ))
 
     df$theta = 'NA'
     dg =0   # initilize degree
@@ -134,10 +133,12 @@ uPolar <- function(df,time_col,obj_col,dist_col,num_images,area_col,offset,c.Adj
 
 
   # Convert distance and theta to  order of time for plotly format
-  c2r <- function(df,time_col,objs_col,area_col,dist_col,theta_col,num_images ){
+  c2r <- function(df,time_col,objs_col,area_col,dist_col,theta_col){
 
     df.row = data.frame()
     df.obj = data.frame()
+    num_images <- length(unique(df[,time_col] ))
+
 
     max.r = max(df[,dist_col])        # max raduis
     min.r = min(df[,dist_col])        # min raduis
@@ -161,7 +162,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,num_images,area_col,offset,c.Adj
 
     print(' Step2 : Data Converted to Plotly format ')
 
-    return (list(v1=df.row,v2=df.obj,v3=df.area, v4=max.r,v5=min.r))
+    return (list(v1=df.row,v2=df.obj,v3=df.area, v4=max.r,v5=min.r,v6= num_images))
 
   }
 
@@ -173,6 +174,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,num_images,area_col,offset,c.Adj
     df.2= df$v2  # total Object
     df.3= df$v3  # area
     max.area = median(df.3)
+    num_images <- df$v6
     rls=c()
 
     print(' Step3: Preparing for Plot ')
@@ -328,7 +330,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,num_images,area_col,offset,c.Adj
    # 0 : Dataset
   # 1 : time col
   # 2 : num_images
-  df.t2d = t2d(df,1,num_images)
+  df.t2d = t2d(df,1)
   ############################
   # 0 = data from t2d function
   # 1 : time col
@@ -338,7 +340,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,num_images,area_col,offset,c.Adj
   # 5 : theta_col
   # 6 : num_images
 
-  df.c2r <- c2r(df.t2d,1,2,3,4,5,num_images)
+  df.c2r <- c2r(df.t2d,1,2,3,4,5)
   #########################################
   # 0 = data
   # 1 : offset raduis from outlayer ( Default = 0 )
@@ -366,26 +368,25 @@ uPolar <- function(df,time_col,obj_col,dist_col,num_images,area_col,offset,c.Adj
 #######################################  uPolar Function  Arguments #################################
 
 
-##### Data format (df, time_col,objs_col, dist_col, num_images, area_col, offset, c.Adjust , RLS )######
-##### Data format (0 ,   1,        2,       3,         4,          5,       6,        7   ,  8  )######
+##### Data format (df, time_col,objs_col, dist_col, area_col, offset, c.Adjust , RLS )######
+##### Data format (0 ,   1,        2,       3,         4,       5,       6,        7 )######
 
 
 # 0 : df, dataset
 # 1 : time col , time colunm number in dataset
 # 2 : obj_col, total total cell colunm number in datasetzx
 # 3 : dist_col  distance colunm number in dataset
-# 4 : num_images, Number of images to visualize
-# 5 : area_col, area colunm number in dataset, if the area is unavailable, set to 'NA'
-# 6 : offset to ajdust max value of data from out-layer for better data visulization
-# 7 : c.Ajust to adjust cell size if the  data area is available, otherwise set to  'NA'
-# 8 : RLS, RLS dataset time-point ( division happened = 1, no division = 0), set to 'NA' if it is not available
+# 4 : area_col, area colunm number in dataset, if the area is unavailable, set to 'NA'
+# 5 : offset to ajdust max value of data from out-layer for better data visulization
+# 6 : c.Ajust to adjust cell size if the  data area is available, otherwise set to  'NA'
+# 7 : RLS, RLS dataset time-point ( division happened = 1, no division = 0), set to 'NA' if it is not available
 
 ####################################################################################################
 
- # df = read.csv("../data/BC8_Tp10.csv")                 # read data for trap 10
- # df= select(df,"time_num","total_objs","area","dist")  #arrange feature in order
- # df.tp1 = read.csv("../data/BC8_RLS_tp10.csv")         # read RLS for trap 10
- # RLS =df.tp1$com                                       # select RLS column data
- # uPolar(df, 1,2,3,391,4,NA,6,RLS)                      # apply uPolar function
+  # df = read.csv("../data/BC8_Tp10.csv")                 # read data for trap 10
+  # df= select(df,"time_num","total_objs","area","dist")  #arrange feature in order
+  # df.tp1 = read.csv("../data/BC8_RLS_tp10.csv")         # read RLS for trap 10
+  # RLS =df.tp1$com                                       # select RLS column data
+  # uPolar(df, 1,2,3,NA,NA,NA,NA)                         # apply uPolar function
 
 ###################################################################################################

@@ -76,7 +76,7 @@ library(plyr)
 
 df <- read.csv( "../data/BC8_Tp35.csv") # one of dataset
 
-uPolar(df,1,2,3,4,0,0,391)
+uPolar(df,1,2,3,NA,NA,NA,NA)
 
 
 

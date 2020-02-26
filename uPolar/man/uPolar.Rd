@@ -3,19 +3,9 @@
 \name{uPolar}
 \alias{uPolar}
 \title{uPolar Visualization tool for time series of microfluidic microscopic images}
-\format{uPolar(time_col,obj_col,dist_col,num_number,area_col,offset,c.Adjust,RLS)}
+\format{uPolar(time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS)}
 \usage{
-uPolar(
-  df,
-  time_col,
-  obj_col,
-  dist_col,
-  num_images,
-  area_col,
-  offset,
-  c.Adjust,
-  RLS
-)
+uPolar(df, time_col, obj_col, dist_col, area_col, offset, c.Adjust, RLS)
 }
 \arguments{
 \item{df}{Dataset, features order ( Time for each image , Total cell number, cell area (optional), cell distance )}
@@ -25,8 +15,6 @@ uPolar(
 \item{obj_col}{Total cells number at each image}
 
 \item{dist_col}{Cell distance from reference point to calculate radius}
-
-\item{num_images}{Total number of images}
 
 \item{area_col}{Individual cell area, if area is unavailable set to NA}
 
