@@ -77,6 +77,10 @@ library(plyr)
 
 df <- read.csv("../data/BC8_Tp10.csv")
   
-uPolar(df, 1,2,NA,NA,NA,NA)   # ( 1 :  1st column of dataset for "time" , 2 :  2nd column of dataset for "distance"  
+uPolar(df, 1,2,NA,NA,NA,NA) 
+
+1 :  1st column of dataset for "time" 
+2 :  2nd column of dataset for "distance"  
+NA :  unavailable data e,g area or RLS
 
 
