@@ -14,8 +14,6 @@
 #'
 #' @param time_col  Time number for each image
 #'
-#' @param obj_col  Total cells number at each image
-#'
 #' @param dist_col  Cell distance from reference point to calculate radius
 #'
 #' @param area_col  Individual cell area, if area is unavailable set to NA
@@ -28,21 +26,15 @@
 #'
 #' @return  Microfludics Time Series ploar plot (RLS optional)
 #'
-#' @format uPolar(time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS)
+#' @format uPolar(time_col,dist_col,area_col,offset,c.Adjust,RLS)
 #'
 #' @examples
 #' library(dplyr)
 #' library(plotly)
 #' library(plyr)
-#'
 #' df = read.csv("../data/BC8_Tp10.csv")
-#' df= select(df,"time_num","total_objs","dist",area")
-#' df.tp1 = read.csv("../data/BC8_RLS_tp10.csv")
-#' RLS =df.tp1$com
-#' uPolar(df, 1,2,3,NA,NA,NA,NA)
-#'
-#'
-uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
+#' uPolar(df, 1,2,NA,NA,NA,NA)
+uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
 
   ########################### checking enteries ########################################
   if ( missing(df)){
@@ -53,17 +45,13 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
     print('missing time column number !!!')
   }
 
-  if (is.na(obj_col)){
-    print('missing  total cells column number !!!')
-  }
-
   if (is.na(dist_col)){
     print('missing distance column number !!!')
   }
 
   if (is.na(offset)){
     offset = 5;
-    print(' default offset set to 5')
+    print(' Offset set to 5 !!!')
   }
 
   if (mean(is.na(RLS))){
@@ -133,7 +121,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
 
 
   # Convert distance and theta to  order of time for plotly format
-  c2r <- function(df,time_col,objs_col,area_col,dist_col,theta_col){
+  c2r <- function(df,time_col,dist_col,area_col,theta_col){
 
     df.row = data.frame()
     df.obj = data.frame()
@@ -147,8 +135,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
 
       df.t = df[df[,time_col]==k,]
 
-      objs = mean(df.t[,objs_col])   # Objects
-      objs = mean(df.t[,objs_col])   # Objects
+      objs <-  nrow(df.t)
       raduis <- df.t[,dist_col]  # Distance
       theta <-  df.t[,theta_col]       # Angle
       df1 <- cbind(raduis,theta)
@@ -182,7 +169,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
 
     if ( is.na(c.Adjust) | mean(df.3==0) & c.Adjust==0){
       c.Adjust = 0;
-      print('  default Cell Size  set to zero  ')
+      print('  default Cell Size  set to 5  ')
     }
 
     #####################  Generat Polar Plot #####################
@@ -225,7 +212,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
         cellSize= df.3[i]/max.area+c.Adjust
       }
 
-    ####################### Color setup #####################
+      ####################### Color Condition #####################
       if(df.2[i] == 0){
         c=   'rgb(255, 255, 255)'  #     no cell
       }
@@ -236,7 +223,7 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
         c=  'rgb(120, 150, 237)'   #    2 cells
       }
       else if (df.2[i] == 3){
-        c = 'rgb(170,12,147)'     #     3 cells
+        c = 'rgb(10,160,80)'     #     3 cells
       }
       else if (df.2[i] == 4 ){
         c=  'rgb(10, 140, 30)'     #     4 cells
@@ -244,9 +231,49 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
       else if (df.2[i] == 5 ){
         c=  'rgb(148, 10, 180)'    #     5 cells
       }
-      else {
-        c=  'rgb(220, 180, 10)'    #   above 5 cells
+
+      else if (df.2[i] == 6 ){
+        c=  'rgb(32, 178, 170)'    #     6 cells
       }
+
+      else if (df.2[i] == 7 ){
+        c=  'rgb(127, 255, 212)'    #     7 cells
+      }
+
+      else if (df.2[i] == 8 ){
+        c=  'rgb(173, 150, 230)'    #     8 cells
+      }
+
+      else if (df.2[i] == 9 ){
+        c=  'rgb(1, 0, 128)'       #     9 cells
+      }
+
+      else if (df.2[i] == 10 ){
+        c=  'rgb(139, 0, 139)'     #     10 cells
+      }
+
+      else if (df.2[i] == 11 ){
+        c=  'rgb(255, 10, 255)'    #     11 cells
+      }
+
+      else if (df.2[i] == 12 ){
+        c=  'rgb(210, 100, 30)'    #     11 cells
+      }
+
+      else if (df.2[i] == 13 ){
+        c=  'rgb(188, 143, 143)'    #     12 cells
+      }
+
+      else if (df.2[i] == 14 ){
+        c=  'rgb(128, 128, 144)'    #     13 cells
+      }
+      else if (df.2[i] == 15 ){
+        c=  'rgb(230, 230, 250)'    #     15 cells
+      }
+      else {
+        c=  'rgb(0, 255, 0)'    #   above 15 cells
+      }
+
 
       p <- add_trace(
         p,
@@ -330,6 +357,8 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
    # 0 : Dataset
   # 1 : time col
   # 2 : num_images
+
+  #t2d <- function (df, time_col){
   df.t2d = t2d(df,1)
   ############################
   # 0 = data from t2d function
@@ -339,14 +368,16 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
   # 4 : dist_col
   # 5 : theta_col
   # 6 : num_images
-
-  df.c2r <- c2r(df.t2d,1,2,3,4,5)
+  #
+  #c2r <- function(df,time_col,dist_col,area_col,theta_col){
+  df.c2r <- c2r(df.t2d,1,2,3,4)
   #########################################
   # 0 = data
   # 1 : offset raduis from outlayer ( Default = 0 )
   # 2 : Adjust cell size to be desplay with actuall zise or defult = 0
   # 3 : Adjust cell size to be desplay with actuall zise or defult = 0
 
+  #p2p <- function (df,offset,c.Adjust,RLS){
   p<- p2p(df.c2r,offset,c.Adjust,RLS)
   ##############################
 
@@ -359,7 +390,6 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
 
 
 
-
 #####################################################################################################
 ###################################### How to run the function from here ############################
 #####################################################################################################
@@ -368,25 +398,25 @@ uPolar <- function(df,time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS){
 #######################################  uPolar Function  Arguments #################################
 
 
-##### Data format (df, time_col,objs_col, dist_col, area_col, offset, c.Adjust , RLS )######
-##### Data format (0 ,   1,        2,       3,         4,       5,       6,        7 )######
+##### Data format (df, time_col, dist_col, area_col, offset, c.Adjust , RLS )######
+##### Data format (0 ,   1,        2,       3,         4,       5,       6, )######
 
 
 # 0 : df, dataset
 # 1 : time col , time colunm number in dataset
-# 2 : obj_col, total total cell colunm number in datasetzx
-# 3 : dist_col  distance colunm number in dataset
-# 4 : area_col, area colunm number in dataset, if the area is unavailable, set to 'NA'
-# 5 : offset to ajdust max value of data from out-layer for better data visulization
-# 6 : c.Ajust to adjust cell size if the  data area is available, otherwise set to  'NA'
-# 7 : RLS, RLS dataset time-point ( division happened = 1, no division = 0), set to 'NA' if it is not available
+# 2 : dist_col  distance colunm number in dataset
+# 3 : area_col, area colunm number in dataset, if the area is unavailable, set to 'NA'
+# 4 : offset to ajdust max value of data from out-layer for better data visulization
+# 5 : c.Ajust to adjust cell size if the  data area is available, otherwise set to  'NA'
+# 6 : RLS, RLS dataset time-point ( division happened = 1, no division = 0), set to 'NA' if it is not available
 
 ####################################################################################################
 
-  # df = read.csv("../data/BC8_Tp10.csv")                 # read data for trap 10
-  # df= select(df,"time_num","total_objs","area","dist")  #arrange feature in order
-  # df.tp1 = read.csv("../data/BC8_RLS_tp10.csv")         # read RLS for trap 10
-  # RLS =df.tp1$com                                       # select RLS column data
-  # uPolar(df, 1,2,3,NA,NA,NA,NA)                         # apply uPolar function
+
+#df = read.csv("../data/BC8_Tp10.csv")                 # read data for trap 10
+#df= select(df,"time","dist","area")               #arrange feature in order
+#df.tp1 = read.csv("../data/BC8_RLS_tp10.csv")         # read RLS for trap 10
+# RLS =df.tp1$com                                      # select RLS column data (optional)
+#uPolar(df,1,2,NA,NA,NA,NA)                            # apply uPolar function
 
 ###################################################################################################

@@ -3,16 +3,14 @@
 \name{uPolar}
 \alias{uPolar}
 \title{uPolar Visualization tool for time series of microfluidic microscopic images}
-\format{uPolar(time_col,obj_col,dist_col,area_col,offset,c.Adjust,RLS)}
+\format{uPolar(time_col,dist_col,area_col,offset,c.Adjust,RLS)}
 \usage{
-uPolar(df, time_col, obj_col, dist_col, area_col, offset, c.Adjust, RLS)
+uPolar(df, time_col, dist_col, area_col, offset, c.Adjust, RLS)
 }
 \arguments{
 \item{df}{Dataset, features order ( Time for each image , Total cell number, cell area (optional), cell distance )}
 
 \item{time_col}{Time number for each image}
-
-\item{obj_col}{Total cells number at each image}
 
 \item{dist_col}{Cell distance from reference point to calculate radius}
 
@@ -38,4 +36,11 @@ ibrary(plotly)
 library(dplyr)
 
 library(plyr)
+}
+\examples{
+library(dplyr)
+library(plotly)
+library(plyr)
+df = read.csv("../data/BC8_Tp10.csv")
+uPolar(df, 1,2,NA,NA,NA,NA)
 }
