@@ -3,9 +3,9 @@
 \name{uPolar}
 \alias{uPolar}
 \title{uPolar Visualization tool for time series of microfluidic microscopic images}
-\format{uPolar(time_col,dist_col,area_col,offset,c.Adjust,RLS)}
+\format{uPolar(time_col,dist_col,area_col,offset,adjust,track,RLS)}
 \usage{
-uPolar(df, time_col, dist_col, area_col, offset, c.Adjust, RLS)
+uPolar(df, time_col, dist_col, area_col, offset, adjust, track, RLS)
 }
 \arguments{
 \item{df}{Dataset, features order ( Time for each image , Total cell number, cell area (optional), cell distance )}
@@ -18,7 +18,9 @@ uPolar(df, time_col, dist_col, area_col, offset, c.Adjust, RLS)
 
 \item{offset}{Raduis between maximum cell raduis and plolar plot outlayer line (better visualization),  use  'NA'  for default}
 
-\item{c.Adjust}{Cell area adjustment for over size cells (better visualization), use  'NA' if area dataset is not available}
+\item{adjust}{Cell area adjustment for over size cells (better visualization), use  'NA' if area dataset is not available}
+
+\item{track}{color coding cell in orderto track cell movement and division ( FALSE = no tracking , TRUE = tracking)}
 
 \item{RLS}{RLS dataset for each time-point (division happened = 1, no division = 0), use  'NA'  if RLS data is not availablle}
 }
@@ -42,5 +44,5 @@ library(dplyr)
 library(plotly)
 library(plyr)
 df = read.csv("../data/BC8_Tp10.csv")
-uPolar(df, 1,2,NA,NA,NA,NA)
+uPolar(df, 1,2,NA,NA,NA,FALSE,NA)
 }

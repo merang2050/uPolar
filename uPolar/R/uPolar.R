@@ -20,21 +20,23 @@
 #'
 #' @param offset  Raduis between maximum cell raduis and plolar plot outlayer line (better visualization),  use  'NA'  for default
 #'
-#' @param c.Adjust  Cell area adjustment for over size cells (better visualization), use  'NA' if area dataset is not available
+#' @param adjust  Cell area adjustment for over size cells (better visualization), use  'NA' if area dataset is not available
+#'
+#'@param track  color coding cell in orderto track cell movement and division ( FALSE = no tracking , TRUE = tracking)
 #'
 #' @param RLS RLS dataset for each time-point (division happened = 1, no division = 0), use  'NA'  if RLS data is not availablle
 #'
 #' @return  Microfludics Time Series ploar plot (RLS optional)
 #'
-#' @format uPolar(time_col,dist_col,area_col,offset,c.Adjust,RLS)
+#' @format uPolar(time_col,dist_col,area_col,offset,adjust,track,RLS)
 #'
 #' @examples
 #' library(dplyr)
 #' library(plotly)
 #' library(plyr)
 #' df = read.csv("../data/BC8_Tp10.csv")
-#' uPolar(df, 1,2,NA,NA,NA,NA)
-uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
+#' uPolar(df, 1,2,NA,NA,NA,FALSE,NA)
+uPolar <- function(df,time_col,dist_col,area_col,offset,adjust,track,RLS){
 
   ########################### checking enteries ########################################
   if ( missing(df)){
@@ -134,6 +136,7 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
     for (k  in 1: num_images){
 
       df.t = df[df[,time_col]==k,]
+      df.t = df.t[order(df.t$dist),]  # sort sidtance
 
       objs <-  nrow(df.t)
       raduis <- df.t[,dist_col]  # Distance
@@ -155,7 +158,7 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
 
   ##### tronspose row to colunm ###################################################
 
-  p2p <- function (df,offset,c.Adjust,RLS){
+  p2p <- function (df,offset,adjust,track,RLS){
 
     df.1= df$v1  # raduis and theta
     df.2= df$v2  # total Object
@@ -167,8 +170,8 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
     print(' Step3: Preparing for Plot ')
 
 
-    if ( is.na(c.Adjust) | mean(df.3==0) & c.Adjust==0){
-      c.Adjust = 0;
+    if ( is.na(adjust) | mean(df.3==0) & adjust==0){
+      adjust = 0;
       print('  default Cell Size  set to 5  ')
     }
 
@@ -205,73 +208,97 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
 
     ################### Adjust Cell Size #########################
 
-      if (c.Adjust==0){
+      if (adjust==0){
         cellSize = 5
       }
       else{
-        cellSize= df.3[i]/max.area+c.Adjust
+        cellSize= df.3[i]/max.area+adjust
       }
 
       ####################### Color Condition #####################
+
       if(df.2[i] == 0){
         c=   'rgb(255, 255, 255)'  #     no cell
+        s=c
       }
       else if (df.2[i] == 1){
-        c=  'rgb(10, 10, 10)'      #     1 cells
+        c=  'rgb(10, 10, 10)'     #     1 cells
+        s=c
       }
       else if (df.2[i] == 2){
         c=  'rgb(120, 150, 237)'   #    2 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)')
+
       }
       else if (df.2[i] == 3){
-        c = 'rgb(10,160,80)'     #     3 cells
+        c = 'rgb(219,120,147)'     #     3 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)')
       }
       else if (df.2[i] == 4 ){
         c=  'rgb(10, 140, 30)'     #     4 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)')
       }
       else if (df.2[i] == 5 ){
         c=  'rgb(148, 10, 180)'    #     5 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
+             'rgb(225, 165, 0)')
       }
 
       else if (df.2[i] == 6 ){
         c=  'rgb(32, 178, 170)'    #     6 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
+             'rgb(225, 165, 0)','rgb(105, 105, 105)')
       }
 
       else if (df.2[i] == 7 ){
         c=  'rgb(127, 255, 212)'    #     7 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
+             'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)')
       }
 
       else if (df.2[i] == 8 ){
         c=  'rgb(173, 150, 230)'    #     8 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
+             'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)','rgb(139,69,19)')
       }
 
       else if (df.2[i] == 9 ){
         c=  'rgb(1, 0, 128)'       #     9 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
+             'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)','rgb(139,69,19)',
+             'rgb(255,99,71)')
       }
 
       else if (df.2[i] == 10 ){
         c=  'rgb(139, 0, 139)'     #     10 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
+             'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)','rgb(139,69,19)',
+             'rgb(255,99,71) ','rgb(34,139,3)')
       }
 
       else if (df.2[i] == 11 ){
         c=  'rgb(255, 10, 255)'    #     11 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
+             'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)','rgb(139,69,19)',
+             'rgb(255,99,71) ','rgb(34,139,3)','rgb(1,1,139)')
       }
 
       else if (df.2[i] == 12 ){
-        c=  'rgb(210, 100, 30)'    #     11 cells
+        c=  'rgb(210, 100, 30)'    #     12 cells
+        s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
+             'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)','rgb(139,69,19)',
+             'rgb(255,99,71) ','rgb(34,139,3)','rgb(1,1,139)','rgb(188,143,100)')
       }
 
-      else if (df.2[i] == 13 ){
-        c=  'rgb(188, 143, 143)'    #     12 cells
-      }
-
-      else if (df.2[i] == 14 ){
-        c=  'rgb(128, 128, 144)'    #     13 cells
-      }
-      else if (df.2[i] == 15 ){
-        c=  'rgb(230, 230, 250)'    #     15 cells
-      }
       else {
-        c=  'rgb(0, 255, 0)'    #   above 15 cells
+        c=  'rgb(0, 255, 0)'    #   above 12 cells
+        s = 'rgb(255, 0, 0)'    #   above 12 cells
+      }
+
+
+      #######  apply tracking #######
+      if( track != 'TRUE'){
+        s=c
       }
 
 
@@ -285,7 +312,7 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
           size = 0.2,
           color= c),
         marker = list(
-          color =  c,
+          color =  s,
           size = cellSize,
           line = list(
             color = c
@@ -322,7 +349,7 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
           marker = list(
             color = 'rgb(100,100,100)',
             symbol= "star",           # display as STAR
-            size = 14,
+            size = 15,
             opacity = 10)
         )
     }
@@ -354,32 +381,30 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
 
   ############# Calling functions #################
 
-   # 0 : Dataset
+  # 0 : Dataset
   # 1 : time col
-  # 2 : num_images
 
   #t2d <- function (df, time_col){
   df.t2d = t2d(df,1)
   ############################
-  # 0 = data from t2d function
+  # 0 : data from t2d function
   # 1 : time col
-  # 2 : obj_col
-  # 3 : area_col
-  # 4 : dist_col
-  # 5 : theta_col
-  # 6 : num_images
-  #
+  # 2 : area_col
+  # 3 : dist_col
+  # 4 : theta_col
+
   #c2r <- function(df,time_col,dist_col,area_col,theta_col){
   df.c2r <- c2r(df.t2d,1,2,3,4)
   #########################################
-  # 0 = data
+  # 0 : data
   # 1 : offset raduis from outlayer ( Default = 0 )
   # 2 : Adjust cell size to be desplay with actuall zise or defult = 0
-  # 3 : Adjust cell size to be desplay with actuall zise or defult = 0
+  # 3 : Track cell by color code , FALSE or TRUE
+  # 4 : RLS data  NA = unavailable RLS data or  RLS dataset
 
   #p2p <- function (df,offset,c.Adjust,RLS){
-  p<- p2p(df.c2r,offset,c.Adjust,RLS)
-  ##############################
+  p<- p2p(df.c2r,offset,adjust,track,RLS)
+  ########################################
 
   ######## Plot (p) ##########
 
@@ -388,35 +413,24 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,c.Adjust,RLS){
 }
 
 
-
-
-#####################################################################################################
-###################################### How to run the function from here ############################
-#####################################################################################################
-
-
-#######################################  uPolar Function  Arguments #################################
-
-
-##### Data format (df, time_col, dist_col, area_col, offset, c.Adjust , RLS )######
-##### Data format (0 ,   1,        2,       3,         4,       5,       6, )######
-
+####################################################################################################
+##################################### How to run the function from here ############################
 
 # 0 : df, dataset
 # 1 : time col , time colunm number in dataset
-# 2 : dist_col  distance colunm number in dataset
+# 2 : dist_col,  distance colunm number in dataset
 # 3 : area_col, area colunm number in dataset, if the area is unavailable, set to 'NA'
-# 4 : offset to ajdust max value of data from out-layer for better data visulization
-# 5 : c.Ajust to adjust cell size if the  data area is available, otherwise set to  'NA'
-# 6 : RLS, RLS dataset time-point ( division happened = 1, no division = 0), set to 'NA' if it is not available
+# 4 : offset,  ajdust max value of data from out-layer for better data visulization
+# 5 : ajust,  adjust cell size if the  data area is available, otherwise set to  'NA'
+# 6 : track,  tracking cell by color code  (FALSE = no tracking , TRUE= tracking)
+# 7 : RLS, RLS dataset time-point ( division happened = 1, no division = 0), set to 'NA' if it is not available
 
-####################################################################################################
-
+########################################### Test Plot ##############################################
 
 #df = read.csv("../data/BC8_Tp10.csv")                 # read data for trap 10
-#df= select(df,"time","dist","area")               #arrange feature in order
+#df= select(df,"time","dist","area")                   # arrange feature in order
 #df.tp1 = read.csv("../data/BC8_RLS_tp10.csv")         # read RLS for trap 10
-# RLS =df.tp1$com                                      # select RLS column data (optional)
-#uPolar(df,1,2,NA,NA,NA,NA)                            # apply uPolar function
+#RLS =df.tp1$com                                       # select RLS column data (optional)
+#uPolar(df,1,2,NA,NA,NA,FALSE,NA)                       # apply uPolar function
 
 ###################################################################################################
