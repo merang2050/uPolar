@@ -31,7 +31,7 @@
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp60.png)
 
-##  uPolar Visulization for Trap 18 using color codes for cell tracking  :  
+##  uPolar Visulization for Trap 18  (using color codes for cell tracking)  :  
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp18.png)
 
