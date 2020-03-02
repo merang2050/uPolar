@@ -31,7 +31,9 @@
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp60.png)
 
+##  uPolar Visulization for Trap 18 with cells color codes  :  
 
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp18.png)
 
 
 ## Installation : 
