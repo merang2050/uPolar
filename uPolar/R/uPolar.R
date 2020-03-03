@@ -138,7 +138,16 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,adjust,track,RLS){
       df.t = df[df[,time_col]==k,]
       df.t = df.t[order(df.t$dist),]  # sort sidtance
 
-      objs <-  nrow(df.t)
+
+      if(mean(df.t$dist== 0 & nrow(df.t) ==1)) {
+
+        objs <-  0
+      }
+      else{
+
+        objs <-  nrow(df.t)
+      }
+
       raduis <- df.t[,dist_col]  # Distance
       theta <-  df.t[,theta_col]       # Angle
       df1 <- cbind(raduis,theta)
