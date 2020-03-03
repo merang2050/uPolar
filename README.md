@@ -31,7 +31,9 @@
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp60.png)
 
+##  uPolar Visulization for Trap 18  (using color codes for cell tracking)  :  
 
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp18.png)
 
 
 ## Installation : 
@@ -77,7 +79,7 @@ library(plyr)
 
 df <- read.csv("../data/BC8_Tp10.csv")
   
-uPolar(df, 1,2,NA,NA,NA,NA) 
+uPolar(df, 1,2,NA,NA,NA,FALSE,NA) 
 
 
 
@@ -87,4 +89,5 @@ uPolar(df, 1,2,NA,NA,NA,NA)
 
 NA :  unavailable data e,g area or RLS
 
+FALSE/TRUE : cell tracking
 
