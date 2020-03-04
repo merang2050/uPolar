@@ -226,6 +226,9 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,adjust,track,RLS){
 
       ####################### Color Condition #####################
 
+
+
+
       if(df.2[i] == 0){
         c=   'rgb(255, 255, 255)'  #     no cell
         s=c
@@ -260,19 +263,19 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,adjust,track,RLS){
       }
 
       else if (df.2[i] == 7 ){
-        c=  'rgb(127, 255, 212)'    #     7 cells
+        c=  'rgb(127, 190, 212)'    #     7 cells
         s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
              'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)')
       }
 
       else if (df.2[i] == 8 ){
-        c=  'rgb(173, 150, 230)'    #     8 cells
+        c=  'rgb(173, 120, 140)'    #     8 cells
         s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
              'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)','rgb(139,69,19)')
       }
 
       else if (df.2[i] == 9 ){
-        c=  'rgb(1, 0, 128)'       #     9 cells
+        c=  'rgb(100, 20, 200)'       #     9 cells
         s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
              'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)','rgb(139,69,19)',
              'rgb(255,99,71)')
@@ -282,7 +285,7 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,adjust,track,RLS){
         c=  'rgb(139, 0, 139)'     #     10 cells
         s= c('rgb(178, 34, 34)','rgb(148,0,211)','rgb(65, 105,225)','rgb(46,139, 87)',
              'rgb(225, 165, 0)','rgb(105, 105, 105)','rgb(25, 25, 112)','rgb(139,69,19)',
-             'rgb(255,99,71) ','rgb(34,139,3)')
+             'rgb(255,99,71) ','rgb(34,80,3)')
       }
 
       else if (df.2[i] == 11 ){
@@ -303,7 +306,6 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,adjust,track,RLS){
         c=  'rgb(0, 255, 0)'    #   above 12 cells
         s = 'rgb(255, 0, 0)'    #   above 12 cells
       }
-
 
       #######  apply tracking #######
       if( track != 'TRUE'){
@@ -438,8 +440,8 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,adjust,track,RLS){
 
 #df = read.csv("../data/BC8_Tp10.csv")                 # read data for trap 10
 #df= select(df,"time","dist","area")                   # arrange feature in order
-#df.tp1 = read.csv("../data/BC8_RLS_tp10.csv")         # read RLS for trap 10
-#RLS =df.tp1$com                                       # select RLS column data (optional)
-#uPolar(df,1,2,NA,NA,NA,FALSE,NA)                       # apply uPolar function
+#rls.tp10 = read.csv("../data/BC8_RLS_tp10.csv")       # read RLS for trap 10
+#RLS =rls.tp10$com                                     # select RLS column data (optional)
+#uPolar(df,1,2,NA,NA,NA,FALSE,NA)                      # apply uPolar function
 
 ###################################################################################################
