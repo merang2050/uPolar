@@ -36,7 +36,7 @@
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp18.png)
 
 
-##  uPolar Visulization for mouse cells  (37 time-lapse microscopic images with color code cell tracking)  :  
+##  uPolar Visulization for mouse cells  (37 time-lapse microscopic images with color code cell tracking inlcuding cells size)  :  
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/im37_mouse.png)
 
