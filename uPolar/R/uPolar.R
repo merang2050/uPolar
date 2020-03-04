@@ -217,11 +217,11 @@ uPolar <- function(df,time_col,dist_col,area_col,offset,adjust,track,RLS){
 
     ################### Adjust Cell Size #########################
 
-      if (adjust==0){
+      if (is.na(adjust) | adjust==0 ){
         cellSize = 5
       }
       else{
-        cellSize= df.3[i]/max.area+adjust
+        cellSize= df.3[i]*adjust
       }
 
       ####################### Color Condition #####################
