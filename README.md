@@ -31,9 +31,6 @@
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_60.png)
 
-##  uPolar Visulization for Trap 18  (using color codes for cell tracking)  :  
-
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp18.png)
 
 
 ##  uPolar Visulization for migrating mouse fibroblasts  
