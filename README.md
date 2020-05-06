@@ -9,18 +9,18 @@
 
 ##  uPolar Visulization for Trap 35  :  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp35.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_35.png)
 
 
 ##  uPolar Visulization for Trap 1  :  
 
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp1.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_1.png)
 
 ##  uPolar Visulization for Trap 20  :  
 
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp20.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_20.png)
 
 
 ##  uPolar Visulization for Trap 20  (Applying cell size)  :  
@@ -29,7 +29,7 @@
 
 ##  uPolar Visulization for Trap 60  :  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp60.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_60.png)
 
 ##  uPolar Visulization for Trap 18  (using color codes for cell tracking)  :  
 
