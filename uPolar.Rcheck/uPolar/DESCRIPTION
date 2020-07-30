@@ -9,8 +9,9 @@ Description: AN easy-to-use visualizing tool for microfluidics based microscopy 
 License: MIT License
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, plotly, RDocumentation
+Imports: dplyr, plotly, plyr
 RoxygenNote: 7.1.0
+Suggests: testthat
 NeedsCompilation: no
-Packaged: 2020-07-30 03:05:45 UTC; Meran
-Built: R 3.6.1; ; 2020-07-30 03:05:50 UTC; unix
+Packaged: 2020-07-30 19:25:40 UTC; Meran
+Built: R 3.6.1; ; 2020-07-30 19:25:45 UTC; unix

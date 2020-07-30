@@ -12,5 +12,7 @@ LazyData: true
 Imports:
     dplyr,
     plotly,
-    RDocumentation
+    plyr
 RoxygenNote: 7.1.0
+Suggests: 
+    testthat

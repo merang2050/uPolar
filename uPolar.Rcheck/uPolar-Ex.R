@@ -31,9 +31,10 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 
 ### ** Examples
 
+#  df= read.csv("../data/BC8_tp10.csv")
+#  rls.tp10 = read.csv("../data/BC8_RLS_tp10.csv")
+#  uPolar(df$time_num,df$dist,df$area,0.05,34,FALSE,rls.tp10$com)
 
-#  df = read.csv("../../data/BC8_tp10.csv")
-#  uPolar(df$time_num,df$dist,NA,NA,NA,FALSE,NA)
 
 
 
