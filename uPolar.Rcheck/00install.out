@@ -1,0 +1,12 @@
+* installing *source* package ‘uPolar’ ...
+** using staged installation
+** R
+** byte-compile and prepare package for lazy loading
+Note: possible error in 'layout(p, title = paste("Add your image number :", ': unused arguments (title = paste("Add your image number :", 0), showlegend = T, paper_bgcolor = "rgb(256, 256, 256)", polar = list(bgcolor = "rgb(230, 230, 230)", angularaxis = list(tickwidth = 3, linewidth = 2, layer = "below traces"), radialaxis = list(showline = T, linewidth = 1, tickwidth = 1, gridcolor = "rgb(256,256,256)", gridwidth = 0.3))) 
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (uPolar)
