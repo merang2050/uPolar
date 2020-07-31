@@ -18,9 +18,6 @@
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_1.png)
 
 
-##  uPolar Visulization for Trap 20  (Applying cell size)  :  
-
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp20_area.png)
 
 ##  uPolar Visulization for Trap 60  :  
 
