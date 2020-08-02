@@ -25,6 +25,14 @@
 
 
 
+
+##  uPolar Visulization with RLS for Trap 60  :  
+
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_10.png)
+
+
+
+
 ##  uPolar Visulization for migrating mouse fibroblasts  
 
 ### 37 time-lapse mouse cells microscopic images with color code cell tracking inlcuding cells size:  
