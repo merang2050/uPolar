@@ -28,7 +28,7 @@
 
 ##  uPolar Visulization with RLS for Trap 10  :  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_10.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_10_RLS.png)
 
 
 
