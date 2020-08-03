@@ -18,7 +18,7 @@
 
 ### Red-Stars are representing division point
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp10_RLS.jpg)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp10_RLS.png)
 
 
 
