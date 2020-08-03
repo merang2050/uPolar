@@ -25,6 +25,16 @@
 
 
 
+
+##  uPolar Visulization with RLS for Trap 10   : 
+
+### Red-Stars are representing division point
+
+![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp10_RLS.png)
+
+
+
+
 ##  uPolar Visulization for migrating mouse fibroblasts  
 
 ### 37 time-lapse mouse cells microscopic images with color code cell tracking inlcuding cells size:  
