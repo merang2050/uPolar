@@ -26,7 +26,9 @@
 
 
 
-##  uPolar Visulization with RLS for Trap 10  :  
+##  uPolar Visulization with RLS for Trap 10   : 
+
+### Red-Stars are representing division point
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp10_RLS.png)
 
