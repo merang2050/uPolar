@@ -26,7 +26,7 @@
 
 ### 37 time-lapse mouse cells microscopic images with color code cell tracking inlcuding cells size:  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/im37_mouse.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/mouse.png)
 
 
 
