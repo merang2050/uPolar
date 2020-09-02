@@ -14,7 +14,7 @@
 
 
 
-##  uPolar Visulization with RLS for Trap 10   : 
+##  uPolar Visualization with RLS for Trap 10   : 
 
 ### Red-Stars are representing division point
 
