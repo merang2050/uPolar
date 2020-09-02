@@ -25,7 +25,8 @@ obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
 to ‘yes’.
 * checking installed package size ... OK
 * checking package directory ... OK
-* checking for future file timestamps ... OK
+* checking for future file timestamps ... NOTE
+unable to verify current time
 * checking DESCRIPTION meta-information ... NOTE
 License components which are templates and need '+ file LICENSE':
   MIT License
@@ -68,4 +69,4 @@ to your NAMESPACE file.
 * checking for unstated dependencies in examples ... OK
 * checking examples ... OK
 * DONE
-Status: 1 WARNING, 2 NOTEs
+Status: 1 WARNING, 3 NOTEs
