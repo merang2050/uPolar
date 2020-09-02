@@ -4,7 +4,7 @@
 
 ## Microfluidics Images :  
  
-![ScreenShot](https://github.com/merang/uPolar/blob/master/microfluidics.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/microfluidic.png)
 
 
 ##  uPolar Visulization for Trap 35  :  
