@@ -22,7 +22,7 @@
 
 
 
-##  uPolar Visulization for migrating mouse fibroblasts  
+##  uPolar Visualization for migrating mouse fibroblasts  
 
 ### 37 time-lapse mouse cells microscopic images with color code cell tracking inlcuding cells size:  
 
