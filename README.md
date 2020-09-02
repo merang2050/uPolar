@@ -7,9 +7,9 @@
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/microfluidic.png)
 
 
-##  uPolar Visulization for Trap 35  :  
+##  uPolar Visulization examples  :  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_35.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/uPolar.png)
 
 
 
