@@ -71,17 +71,13 @@ library(plotly)
 library(plyr)
 
 
-df <- read.csv("../data/BC8_Tp10.csv")
-  
-uPolar(df, 1,2,NA,NA,NA,FALSE,NA) 
+
+df= read.csv("../data/BC8_tp10.csv")
+
+rls.tp10 = read.csv("../data/BC8_RLS_tp10.csv")
+
+uPolar(df$time_num,df$dist,df$area,0.05,34,FALSE,rls.tp10$com)
 
 
 
-1 :  1st column of dataset for "time" 
-
-2 :  2nd column of dataset for "distance"  
-
-NA :  unavailable data e,g area or RLS
-
-FALSE/TRUE : cell tracking
 
