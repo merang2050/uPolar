@@ -4,17 +4,17 @@
 
 ## Microfluidics Images :  
  
-![ScreenShot](https://github.com/merang/uPolar/blob/master/microfluidics.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/microfluidic.png)
 
 
-##  uPolar Visulization for Trap 35  :  
+##  uPolar Visulization examples  :  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp_35.png)
-
-
+![ScreenShot](https://github.com/merang/uPolar/blob/master/uPolar.png)
 
 
-##  uPolar Visulization with RLS for Trap 10   : 
+
+
+##  uPolar Visualization with RLS for Trap 10   : 
 
 ### Red-Stars are representing division point
 
@@ -22,11 +22,11 @@
 
 
 
-##  uPolar Visulization for migrating mouse fibroblasts  
+##  uPolar Visualization for migrating mouse fibroblasts  
 
 ### 37 time-lapse mouse cells microscopic images with color code cell tracking inlcuding cells size:  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/im37_mouse.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/mouse.png)
 
 
 
@@ -71,17 +71,13 @@ library(plotly)
 library(plyr)
 
 
-df <- read.csv("../data/BC8_Tp10.csv")
-  
-uPolar(df, 1,2,NA,NA,NA,FALSE,NA) 
+
+df= read.csv("../data/BC8_tp10.csv")
+
+rls.tp10 = read.csv("../data/BC8_RLS_tp10.csv")
+
+uPolar(df$time_num,df$dist,df$area,0.05,34,FALSE,rls.tp10$com)
 
 
 
-1 :  1st column of dataset for "time" 
-
-2 :  2nd column of dataset for "distance"  
-
-NA :  unavailable data e,g area or RLS
-
-FALSE/TRUE : cell tracking
 
