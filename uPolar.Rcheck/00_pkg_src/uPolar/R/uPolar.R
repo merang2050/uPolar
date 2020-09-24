@@ -32,8 +32,8 @@
 uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
 
 
-  print(' inililizing functions  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ')
 
+  print(' Step1 : Time converting to degree  >>>>>>>>>>>>>>>>>>>>> ')
 
   ###########################  convet time to degree ######################
   t2d <- function (time_col){
@@ -54,7 +54,7 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
       else if (r1 < r2){
 
         theta[i] = dg
-        dg= dg + (359/num_images)   # divid time to degree and add to next degree
+        dg= dg + (359/num_images)   # divid time to degree and add to next degree ( 0 - 359 degree)
       }
 
       else{
@@ -62,8 +62,8 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
         theta[i] = dg
       }
     }
+    print(' Step1 : Done  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ')
 
-    print(' Step1 : Time converted to degree  >>>>>>>>>>>>>>>>>>>>> ')
     return(theta)
   }
 
@@ -75,6 +75,8 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
   }
 
   ############### Convert distance and theta to   plotly format ########################
+  print(' Step2 : Converting data to Plotly format >>>>>>>>>>>>>>>')
+
   c2r <- function(theta_col, time_col,dist_col){
 
     df.row = data.frame()
@@ -102,20 +104,19 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
 
     }
 
-    df.obj= as.vector(t(df.obj))    # conver object data.frame to vector
-
-
-    print(' Step2 : Data Converted to Plotly format >>>>>>>>>>>>>>>')
+    df.obj= as.vector(t(df.obj))    # convert object data.frame to vector
 
     #return (list(v1=df.row,v2=df.com, v3=raduis,v4=theta,v5= num_images,v6=df.t))
     return (list(v1=df.row,v2=df.obj,v3= num_images,v4= max.r,v5=min.r))
+    print(' Step2 : Done  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ')
 
   }
 
 
-  ########################## tronspose row to colunm ###########################
-  p2p <- function (df.c2r,area_col,adjust,refLine,track,RLS){
+  ########################## transpose row to colunm ###########################
+  print(' Step3: Preparing for Plot >>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
 
+  p2p <- function (df.c2r,area_col,adjust,refLine,track,RLS){
 
     df.rt= df.c2r$v1       # raduis and theta
     df.obj= df.c2r$v2      # total object
@@ -125,7 +126,6 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
 
     rls=c()
 
-
     if (mean(is.na(RLS))){
       df_rls = 0;
       print(' RLS data is not available !!!')
@@ -133,9 +133,6 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
     else {
       df_rls = 1;
     }
-
-
-    print(' Step3: Preparing for Plot >>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
 
     #####################  Generat Polar Plot ######################
     p <- plot_ly(
@@ -166,10 +163,10 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
     j = 1
     k = 2
 
+
+    ####################### Color Condition #####################
+
     for (i in 1:(length(df.rt)/2)){
-
-
-      ####################### Color Condition #####################
 
 
       if(df.obj[i] == 0){
@@ -254,12 +251,14 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
       ####################### Adjust Cell Size ####################
 
       if (is.na(adjust) | adjust==0 ){
+
+        print(' Area data is not available ')
         cellSize = 5
       }
       else{
+        print('  Area data is loading   ')
         cellSize= area_col[i] * adjust
       }
-
 
       #####################  apply  color tracking #################
       if( track != 'TRUE'){
@@ -290,13 +289,16 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
 
       # collect RLS counting and convert time to degree for theta
 
-
       if(df_rls==1){
+        print(' RLS data is loading ')
 
         if((RLS[i])==1){
           dg =  ( i * 359 ) / num_images
           rls=rbind(rls,dg)
         }
+        else
+
+          print(' RLS data is not available ')
       }
 
       j <- j + 2
@@ -319,7 +321,6 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
           opacity = 10)
       )
     }
-
 
     print(' Step4: Preparing for layout >>>>>>>>>>>>>>>>>>>>>>>>>>> ')
 
@@ -374,9 +375,8 @@ uPolar <- function(time_col,dist_col,area_col,adjust,refLine,track,RLS){
   # p2p <- function (df.c2r,area_col,adjust,refLine,track,RLS){
   p<- p2p(df.c2r,area_col,adjust,refLine,track,RLS)
 
-
   ########################################
-  print(' Step5: Plot uPolar >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+  print(' Step5: Ploting uPolar >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
   p
 
 }
