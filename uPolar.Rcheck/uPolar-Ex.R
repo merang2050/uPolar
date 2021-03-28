@@ -25,15 +25,15 @@ flush(stderr()); flush(stdout())
 
 base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: uPolar
-### Title: uPolar Visualization tool for time series of microfluidic
-###   microscopic images
+### Title: uPolar An Interactive 2D Visualization Tool for Microscopic
+###   Time-series Images
 ### Aliases: uPolar
 
 ### ** Examples
 
-#  df= read.csv("../data/BC8_tp10.csv")
-#  rls.tp10 = read.csv("../data/BC8_RLS_tp10.csv")
-#  uPolar(df$time_num,df$dist,df$area,0.05,34,FALSE,rls.tp10$com)
+#  df= read.csv("../data/BC8_tp10_TpTmXYAreaRLS.csv")
+#  uPolar(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=NULL,
+#        zeroAdjust= NULL,track = FALSE,RLS= FALSE)
 
 
 

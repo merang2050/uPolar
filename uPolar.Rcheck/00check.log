@@ -5,7 +5,7 @@
 * using options ‘--no-manual --as-cran’
 * checking for file ‘uPolar/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘uPolar’ version ‘0.1.9’
+* this is package ‘uPolar’ version ‘0.2.0’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK
@@ -18,15 +18,14 @@
 * checking serialization versions ... OK
 * checking whether package ‘uPolar’ can be installed ... WARNING
 Found the following significant warnings:
-  Note: possible error in 'layout(p, title = paste("Add your image number"), ': unused arguments (title = paste("Add your image number"), showlegend = T, paper_bgcolor = "rgb(256, 256, 256)", polar = list(bgcolor = "rgb(230, 230, 230)", angularaxis = list(tickwidth = 3, linewidth = 2, layer = "below traces"), radialaxis = list(showline = T, linewidth = 1, tickwidth = 1, gridcolor = "rgb(256,256,256)", gridwidth = 0.3))) 
+  Note: possible error in 'layout(p, title = paste(">     <", ': unused arguments (title = paste(">     <", title), showlegend = T, paper_bgcolor = "rgb(256, 256, 256)", polar = list(bgcolor = "rgb(200, 200, 200)", angularaxis = list(tickwidth = 3, linewidth = 2, layer = "below traces"), radialaxis = list(showline = T, linewidth = 1, tickwidth = 1, gridcolor = "rgb(225,225,225)", gridwidth = 0.2))) 
 See ‘/Users/user/github/uPolar/uPolar.Rcheck/00install.out’ for details.
 Information on the location(s) of code generating the ‘Note’s can be
 obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
 to ‘yes’.
 * checking installed package size ... OK
 * checking package directory ... OK
-* checking for future file timestamps ... NOTE
-unable to verify current time
+* checking for future file timestamps ... OK
 * checking DESCRIPTION meta-information ... NOTE
 License components which are templates and need '+ file LICENSE':
   MIT License
@@ -51,12 +50,10 @@ uPolar : cbind.fill: no visible global function definition for
 uPolar : p2p: no visible global function definition for ‘plot_ly’
 uPolar : p2p: no visible global function definition for ‘add_trace’
 uPolar : p2p: no visible global function definition for ‘layout’
-uPolar: no visible binding for global variable ‘df’
 Undefined global functions or variables:
-  add_trace df layout plot_ly rbind.fill
+  add_trace layout plot_ly rbind.fill
 Consider adding
   importFrom("graphics", "layout")
-  importFrom("stats", "df")
 to your NAMESPACE file.
 * checking Rd files ... OK
 * checking Rd metadata ... OK
@@ -69,4 +66,4 @@ to your NAMESPACE file.
 * checking for unstated dependencies in examples ... OK
 * checking examples ... OK
 * DONE
-Status: 1 WARNING, 3 NOTEs
+Status: 1 WARNING, 2 NOTEs

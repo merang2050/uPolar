@@ -2,30 +2,44 @@
 % Please edit documentation in R/uPolar.R
 \name{uPolar}
 \alias{uPolar}
-\title{uPolar Visualization tool for time series of microfluidic microscopic images}
+\title{uPolar An Interactive 2D Visualization Tool for Microscopic Time-series Images}
 \format{
-uPolar(time_col,dist_col,area_col,adjust,refLine,track,RLS)
+uPolar(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=NULL,zeroAdjust= NULL,track = FALSE,RLS= FALSE)
 }
 \usage{
-uPolar(time_col, dist_col, area_col, adjust, refLine, track, RLS)
+uPolar(
+  df,
+  refPoint = NULL,
+  title = NULL,
+  refLine = NULL,
+  Area = FALSE,
+  aAdjust = NULL,
+  zeroAdjust = NULL,
+  track = FALSE,
+  RLS = FALSE
+)
 }
 \arguments{
-\item{time_col}{time array from dataset}
+\item{df}{dataset (CSV format), Features be named : Time, X, Y, Area (optional), RLS (optional)}
 
-\item{dist_col}{distance array from dataset to calculate radius}
+\item{refPoint}{Given numerical image reference point to calculate distance, format: c(xr,yr), default (refPoint= NULL) c(0,0)}
 
-\item{area_col}{area array, if area is unavailable set to NA}
+\item{title}{Plot title, default (title = NULL)}
 
-\item{adjust}{Cell area adjustment for over size cells (better visualization), use  'NA' if area dataset is not available}
+\item{refLine}{numerical value for reference line (red) on the plot, default (refLine = NULL)}
 
-\item{refLine}{reference line to  for cell alignment monitoring  use  'NA'  for default}
+\item{Area}{Area = FALSE (no area data available) , Area =TRUE (area data available)}
 
-\item{track}{color code tracking for cells movement and division ( FALSE = no tracking , TRUE = tracking)}
+\item{aAdjust}{numerical value for adjust cell size by multiplication, default (aAdjust = NULL)}
 
-\item{RLS}{RLS  array from dataset for each time-point (division happened = 1, no division = 0), use  'NA'  if RLS data is not availablle}
+\item{zeroAdjust}{numerical value Adjust minimum cell distance from plot center point, default (zeroPoint = NULL)}
+
+\item{track}{color tag tracking for cells movement and division, trak = FALSE (no tag tracking), track = TRUE (tag tracking)}
+
+\item{RLS}{RLS = FALSE (no RLS data available), RLS = TRUE (RLS data available)}
 }
 \value{
-Microfludics Time Series ploar plot (RLS optional)
+Microfludics Time Series uploar plot
 }
 \description{
 AN easy-to-use visualizing tool for Microfluidic based microscopy images to monitor cellular events in biomedical time-series data.
@@ -34,8 +48,8 @@ AN easy-to-use visualizing tool for Microfluidic based microscopy images to moni
 Packages :     devtools::install.packages(c("dplyr,plotly,plyr"))
 }
 \examples{
-#  df= read.csv("../data/BC8_tp10.csv")
-#  rls.tp10 = read.csv("../data/BC8_RLS_tp10.csv")
-#  uPolar(df$time_num,df$dist,df$area,0.05,34,FALSE,rls.tp10$com)
+#  df= read.csv("../data/BC8_tp10_TpTmXYAreaRLS.csv")
+#  uPolar(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=NULL,
+#        zeroAdjust= NULL,track = FALSE,RLS= FALSE)
 
 }

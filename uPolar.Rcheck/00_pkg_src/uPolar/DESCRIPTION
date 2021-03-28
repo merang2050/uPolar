@@ -1,11 +1,11 @@
 Package: uPolar
 Type: Package
-Title: μPolar Visualization tool for time lapse Microscopic Images
-Version: 0.1.9
+Title: Time Series Visualization Tools for Microscopic Images
+Version: 0.2.0
 Author: Mehran Ghafari
 Maintainer: Mehran Ghafari <ryg668@mocs.utc.edu>
-Description: AN easy-to-use visualizing tool for microfluidics based microscopy images to   
-     monitor time lapse cellular events in biomedical data.
+Description: AN easy-to-use visualizing tool for microfluidics and microscopy images to   
+     monitor time-lapse cellular events in biomedical data.
 License: MIT License
 Encoding: UTF-8
 LazyData: true
@@ -13,4 +13,4 @@ Imports: dplyr, plotly, plyr
 RoxygenNote: 7.1.0
 Suggests: testthat
 NeedsCompilation: no
-Packaged: 2020-09-24 15:12:32 UTC; Meran
+Packaged: 2021-03-28 02:10:15 UTC; Meran
