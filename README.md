@@ -15,7 +15,7 @@
 
 ##  uPolar Visualization for TrapNo.  10   : 
 
-### No 1 to 8 represent  individual event onthe plot 
+### No 1 to 8 represent  individual event on the plot 
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/explain.png)
 
@@ -53,7 +53,7 @@ library(plotly)
 
 library(plyr)
 
-### Load dead
+### Load data
 df= read.csv("../data/BC8_tp10_TpTmXYAreaRLS.csv")
 
 ### uPolar function 
