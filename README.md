@@ -1,4 +1,4 @@
-# uPolar
+# uPolar R Visualization Tool 
 
 
 
