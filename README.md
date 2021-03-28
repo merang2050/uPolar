@@ -9,14 +9,21 @@
 
 ##  uPolar Visulization examples  :  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/uPolar.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/compare.png)
 
 
 
+##  uPolar Visualization for TrapNo.  10   : 
 
-##  uPolar Visualization with RLS for Trap 10   : 
+### No 1 to 8 represent  individual event onthe plot 
 
-### Red-Stars are representing division point
+![ScreenShot](https://github.com/merang/uPolar/blob/master/explain.png)
+
+
+
+##  uPolar Visualization with RLS for Trap No. 1   : 
+
+### Red-Stars represent division point
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/BC8_Tp10_RLS.png)
 
@@ -26,7 +33,7 @@
 
 ### 37 time-lapse mouse cells microscopic images with color code cell tracking inlcuding cells size:  
 
-![ScreenShot](https://github.com/merang/uPolar/blob/master/mouse.png)
+![ScreenShot](https://github.com/merang/uPolar/blob/master/microscopic.png)
 
 
 
