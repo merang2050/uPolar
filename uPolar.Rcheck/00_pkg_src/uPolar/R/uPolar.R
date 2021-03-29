@@ -27,48 +27,63 @@
 #' @format uPolar(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=NULL,zeroAdjust= NULL,track = FALSE,RLS= FALSE)
 #'
 #' @examples
-#' #  df= read.csv("../data/BC8_tp10_TpTmXYAreaRLS.csv")
-#' #  uPolar(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=NULL,
+#' #   uPolar plot with distance
+#' #   Data : Time, X, Y
+#' #   df= read.csv("../data/BC8_tp10_TpTmXY.csv")
+#' #   uPolar(df,refPoint=NULL,title=NULL,refLine=40,Area=FALSE,aAdjust=1,
 #' #        zeroAdjust= NULL,track = FALSE,RLS= FALSE)
+#'
+#'
+#' #   uPolar plot with distance and area
+#' #   Data : Time, X, Y, Area
+#' #   df= read.csv("../data/BC8_tp10_TpTmXYArea.csv")
+#' #   uPolar(df,refPoint=NULL,title=NULL,refLine=40,Area=TRUE,aAdjust=1,
+#' #        zeroAdjust= NULL,track = FALSE,RLS= FALSE)
+#'
+#'
+#' #   uPolar plot with distance , area , color tag and RLS
+#' #   Data : Time, X,Y , Area, RLS
+#' #   df= read.csv("../data/BC8_tp10_TpTmXYAreaRLS.csv")
+#' #   uPolar(df,refPoint=NULL,title=NULL,refLine=40,Area=FALSE,aAdjust=1,
+#' #        zeroAdjust= NULL,track = TRUE,RLS= TRUE)
+#'
 #'
 #' @export
 #'
 uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=NULL,zeroAdjust= NULL,track = FALSE,RLS= FALSE){
   ###################################################### checking enteries ######################################################
-  if ( missing(df)){
-    print(' missing "data" entery !!!')
+  if ( is.null(df)){
+    print('  missing "data" !!!')
   }
   if (is.null(refPoint)){
     refPoint = c(0,0)
-    print(' default reference point  c(0,0) !!!')
+    print('  default reference point  c(0,0) !!!')
   }
   if (is.null(refLine)){   # if area colunm is unavailable
     refLine =  5 ;
     print('  defualt reference line = 5 !!!')
   }
   if (is.null(title)){   # if area colunm is unavailable
-    title =  "no title" ;
+    title =  "No title" ;
     print('  defualt title !!!')
   }
   if(isFALSE(Area)){
     df$Area <- 5
     cSize <- df$Area
-    print('defualt cell size = 5 !!!')
+    print('  Defualt cell size = 5 !!!')
   }
   else{
     cSize<- df$Area
-    print('Area is available!!!')
+    print('  Area is available!!!')
   }
   if (is.null(zeroAdjust)){
     zeroAdjust =  0 ;
-    print('no adjustment from zero point !!!')
+    print('  No adjustment for zero point !!!')
   }
   if (isFALSE(RLS)){
-    RLS = NULL  ;
-    print('NO RLS available !!!')
+    print('  No RLS available !!!')
   }else{
-    RLS = df$RLS
-    print('RLS is available !!!')
+    print('  RLS is available !!!')
   }
   cbind.fill <- function(...) {
     df.tsps1 <- lapply(list(...),t)
@@ -79,28 +94,33 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
   rxyDist <-  function(x1, y1, x2, y2) {sqrt( (x1 - x2)^2 + (y1-y2)^2 )};
   # Time to degree function
   t2d <- function (df){
-    time <- df$Time
-    num_images <- length(unique(time))
-    theta = c()
-    dg = 0   # initilize degree
-    for  (i in 1 : length(time)){
-      r1  = time[i];
-      r2 =  time[i+1 ];
-      if (is.na(r2)){
-        theta[i] = dg
-        dg = 1
-      }
-      else if (r1 < r2){
-        theta[i] = dg
-        dg= dg + (360/num_images)   # divid time to degree and add to next degree
+    tb.df=c()
+    dg = 0
+    num_images <- length(unique(df$Time))
+    for  (i in 1 :num_images){
+      rcur= df[df$Time ==i,]
+      rcur$Theta = dg
+      if(is.null(rcur$RLS)){
+        tb.df <- rbind(tb.df,rcur)
+        dg= dg + (360/num_images)
       }
       else{
-        theta[i] = dg
+        if(mean(is.na(rcur$RLS))){
+          rcur$rlsD = NA
+        }
+        else if( sort(rcur$RLS[1])==1){
+          rcur =rcur[1,]
+          rcur$rlsD = dg
+        }
+        else{
+          rcur$rlsD = NA
+        }
+        tb.df <- rbind(tb.df,rcur)
+        dg= dg + (360/num_images)
       }
     }
-    df$Theta <- theta
-    print(" Step1 : Time converted to degree  >>>>>>>>>>>>>>>>>>>>")
-    return(df)
+    print(' Step1 : Time converted to degree  >>>>>>>>>>>>>>>>>>>>>>> ')
+    return(tb.df)
   }
   # Convert distance and theta to  order of time for plotly format
   c2r <- function(df,refPoint,refLine){
@@ -114,6 +134,7 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
         df$Dist[n]  <- rxyDist(df$X[n], df$Y[n],ref_X,ref_Y);
       }
     }
+    dRLS= df$rlsD
     df.row = data.frame()
     df.obj = data.frame()
     num_images <- length(unique(df$Time))
@@ -121,6 +142,7 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
     min.r = min(df$Dist)        # min raduis
     for (k  in 1: num_images){
       df.t = df[df$Time== k,]
+      df.t = df.t[order(df.t$Dist),]      ## sort distance
       # count object
       if(mean(df.t$X) == 0 & mean(df.t$Y) == 0){
         objs <-  0
@@ -137,7 +159,7 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
     }
     df.obj= as.vector(t(df.obj))    # conver object data.frame to vector
     print(" Step2 : Data Converted to Plotly format >>>>>>>>>>>>>>")
-    return (list(v1=df.row,v2=df.obj,v3= num_images,v4= max.r,v5=min.r,v6 = refLine))
+    return (list(v1=df.row,v2=df.obj,v3= num_images,v4= max.r,v5=min.r,v6 = refLine, v7=dRLS))
   }
   ################### Apply plotly plot  ##################
   p2p <- function (df.c2r,title,cSize,aAdjust,zeroAdjust,track,RLS){
@@ -147,7 +169,7 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
     maxD= df.c2r$v4        # max distance
     mixD= df.c2r$v5        # min distance
     refLine <- df.c2r$v6
-    rls=c()
+    rls= df.c2r$v7
     print(" Step3: Preparing for Plot >>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     #####################  Generat Polar Plot #####################
     p <- plot_ly(
@@ -249,13 +271,6 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
       if( isFALSE(track)){
         s=c
       }
-      ############################ Read RLS data #######################
-      if(!is.null(RLS)){
-        if(mean(RLS[i])==1){
-          dg =  ( i * 360 ) / num_images
-          rls=rbind(rls,dg)
-        }
-      }
       ####################### Plot cells data ########################
       p <- add_trace(
         p,
@@ -280,13 +295,16 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
       k <- k + 2
     }
     ###################### RLS Plot (out layer) #######################
-    if(!is.null(RLS)){
+    if(isTRUE(RLS)){
       p <- add_trace(
         p,
         mode= 'markers',
         r = as.list(rep(5+maxD+zeroAdjust, 360)),
         theta = c(rls),
-        name = paste('refLine:','\n'),
+        name = paste('RLS (star):','\n'),
+        line = list(
+          size = 1,
+          color=  'rgb(50,50,50)'  ),
         marker = list(
           color = 'rgb(255,0,0)',
           symbol= "star",           # display as STAR
@@ -298,7 +316,7 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
     #################### Plot layout features  #####################
     p <- layout(
       p,
-      title =  paste('>     <',  title ),
+      title =  paste('>      <', title ),
       showlegend = T,
       paper_bgcolor = "rgb(256, 256, 256)",  #  outside color
       polar = list(
@@ -314,7 +332,6 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
           tickwidth = 1,
           gridcolor = 'rgb(225,225,225)',
           gridwidth = 0.2
-
         )
       )
     )
@@ -322,7 +339,6 @@ uPolar <- function(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=N
   df.t2d <- t2d(df)
   df.c2r <- c2r(df.t2d,refPoint,refLine)
   p<- p2p(df.c2r,title,cSize,aAdjust,zeroAdjust,track,RLS)
-
   print(" Step5: Finializing the Plot >>>>>>>>>>>>>>>>>>>>>>>>>>")
   p
 }

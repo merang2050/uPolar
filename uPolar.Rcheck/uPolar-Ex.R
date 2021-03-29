@@ -31,9 +31,26 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 
 ### ** Examples
 
-#  df= read.csv("../data/BC8_tp10_TpTmXYAreaRLS.csv")
-#  uPolar(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=NULL,
+#   uPolar plot with distance
+#   Data : Time, X, Y
+#   df= read.csv("../data/BC8_tp10_TpTmXY.csv")
+#   uPolar(df,refPoint=NULL,title=NULL,refLine=40,Area=FALSE,aAdjust=1,
 #        zeroAdjust= NULL,track = FALSE,RLS= FALSE)
+
+
+#   uPolar plot with distance and area
+#   Data : Time, X, Y, Area
+#   df= read.csv("../data/BC8_tp10_TpTmXYArea.csv")
+#   uPolar(df,refPoint=NULL,title=NULL,refLine=40,Area=TRUE,aAdjust=1,
+#        zeroAdjust= NULL,track = FALSE,RLS= FALSE)
+
+
+#   uPolar plot with distance , area , color tag and RLS
+#   Data : Time, X,Y , Area, RLS
+#   df= read.csv("../data/BC8_tp10_TpTmXYAreaRLS.csv")
+#   uPolar(df,refPoint=NULL,title=NULL,refLine=40,Area=FALSE,aAdjust=1,
+#        zeroAdjust= NULL,track = TRUE,RLS= TRUE)
+
 
 
 

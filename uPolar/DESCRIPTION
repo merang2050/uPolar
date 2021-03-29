@@ -1,7 +1,7 @@
 Package: uPolar
 Type: Package
 Title: Time Series Visualization Tools for Microscopic Images
-Version: 0.2.0
+Version: 0.2.1
 Author: Mehran Ghafari
 Maintainer: Mehran Ghafari <ryg668@mocs.utc.edu>
 Description: AN easy-to-use visualizing tool for microfluidics and microscopy images to   

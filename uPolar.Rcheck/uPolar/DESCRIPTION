@@ -1,7 +1,7 @@
 Package: uPolar
 Type: Package
 Title: Time Series Visualization Tools for Microscopic Images
-Version: 0.2.0
+Version: 0.2.1
 Author: Mehran Ghafari
 Maintainer: Mehran Ghafari <ryg668@mocs.utc.edu>
 Description: AN easy-to-use visualizing tool for microfluidics and microscopy images to   
@@ -13,5 +13,5 @@ Imports: dplyr, plotly, plyr
 RoxygenNote: 7.1.0
 Suggests: testthat
 NeedsCompilation: no
-Packaged: 2021-03-28 02:10:15 UTC; Meran
-Built: R 3.6.1; ; 2021-03-28 02:10:20 UTC; unix
+Packaged: 2021-03-29 17:25:41 UTC; Meran
+Built: R 3.6.1; ; 2021-03-29 17:25:46 UTC; unix
