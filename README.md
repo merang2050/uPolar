@@ -15,7 +15,7 @@
 
 ##  uPolar Visualization for TrapNo.  10   : 
 
-### No 1 to 8 represent  individual event on the plot 
+### Trap No. 1 to 8 represent  individual event on the plot 
 
 ![ScreenShot](https://github.com/merang/uPolar/blob/master/explain.png)
 
