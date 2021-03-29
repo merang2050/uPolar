@@ -45,7 +45,7 @@ devtools::install.packages(c("dplyr,plotly,plyr"))
 devtools::install_github("merang/uPolar/uPolar")
 
 
-## How to run uPolar : 
+## How to run : 
 
 library(dplyr)
 
