@@ -62,4 +62,9 @@ uPolar(df,refPoint=NULL,title=NULL,refLine=NULL,Area=FALSE,aAdjust=1,zeroAdjust=
 
 
 
+### Poster : 
+
+https://f1000research.com/author/poster/thankyou/1118884
+
+
 
