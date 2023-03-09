@@ -42,7 +42,7 @@ install.packages("devtools")
 
 devtools::install.packages(c("dplyr,plotly,plyr"))
 
-devtools::install_github("merang/uPolar/blob/master/uPolar_0.2.1.tar.gz")  
+devtools::install_github("merang/uPolar/uPolar")  
 
 
 ## How to run : 
